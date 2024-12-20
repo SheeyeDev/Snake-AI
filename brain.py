@@ -44,11 +44,12 @@ class Brain:
 
     # Assigns a value to a direction
     def get_output(self, obj, distance):
-        out = 0
+        out = 1
         # Multiplies out by all values in hidden layer, matching seen obstacle
-        for node in range(HIDDEN_LAYER_SIZE):
-            out+=self.hidden_layer[obj][node]
+        for node in range(1,HIDDEN_LAYER_SIZE):
+            out*=self.hidden_layer[obj][node]
             math.tanh(out)
+        out+=self.hidden_layer[obj][0]
         # The farther away the obstacle, the less significant output value
         out/=distance
         return out
