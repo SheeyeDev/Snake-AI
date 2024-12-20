@@ -1,6 +1,6 @@
 import random
 from config import *
-from math import exp
+import math
 # Class responsible to make decisions  on which direction the snake should move in.
 class Brain:
 
@@ -44,10 +44,11 @@ class Brain:
 
     # Assigns a value to a direction
     def get_output(self, obj, distance):
-        out = self.hidden_layer[obj][0]
+        out = 0
         # Multiplies out by all values in hidden layer, matching seen obstacle
-        for node in range(1,HIDDEN_LAYER_SIZE):
+        for node in range(HIDDEN_LAYER_SIZE):
             out+=self.hidden_layer[obj][node]
+            math.tanh(out)
         # The farther away the obstacle, the less significant output value
         out/=distance
         return out
